@@ -21,13 +21,18 @@ const routes: Routes = [
   },
 
   {
-    path: '404',
+    path: 'seguridad',
+    loadChildren: () => import('./modulos/seguridad/seguridad.module').then(m => m.SeguridadModule)
+  },
+
+  {
+    path: 'error-404',
     component: Error404Component
   },
 
   {
     path:'**',
-    redirectTo: '/404'
+    redirectTo: '/error-404'
   }
 ];
 

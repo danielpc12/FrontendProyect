@@ -1,1 +1,45 @@
-<p>iniciar-sesion works!</p>
+<body ng-app="mainModule" ng-controller="mainController">
+    <h1>Iniciar Sesión</h1>
+<div id="login-page" class="row">
+    <div class="col s12 z-depth-6 card-panel">
+      <form [formGroup]="fgValidacion" class="login-form">
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mail_outline</i>
+            <input class="validate" id="email" type="email">
+            <label formControlName="correo" for="email" data-error="wrong" data-success="right">Correo Electrónico</label>
+            <div class="mensajeValidacion" *ngIf="(obtenerFGV.correo.errors && (obtenerFGV.correo.dirty || obtenerFGV.correo.touched))">
+              <strong>Este campo es requerido</strong>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock_outline</i>
+            <input formControlName="clave" id="password" type="password">
+            <label for="password">Contraseña</label>
+            <div class="mensajeValidacion" *ngIf="(obtenerFGV.clave.errors && (obtenerFGV.clave.dirty || obtenerFGV.clave.touched))">
+              <strong>Este campo es requerido</strong>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <a href="#" class="btn waves-effect waves-light col s12">Ingresar</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="#">Registrarse</a></p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="#">Recuperar Contraseña</a></p>
+          </div>          
+        </div>
+
+      </form>
+    </div>
+  </div> </body>
+

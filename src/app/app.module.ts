@@ -8,7 +8,8 @@ import { SidenavComponent } from './publico/paginaMaestra/sidenav/sidenav.compon
 import { FooterComponent } from './publico/paginaMaestra/footer/footer.component';
 import { InicioComponent } from './publico/inicio/inicio.component';
 import { Error404Component } from './publico/errores/error404/error404.component';
-
+import { BarraNavegacionComponent } from './publico/paginaMaestra/barra-navegacion/barra-navegacion.component';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,11 +17,13 @@ import { Error404Component } from './publico/errores/error404/error404.component
     SidenavComponent,
     FooterComponent,
     InicioComponent,
-    Error404Component
+    Error404Component,
+    BarraNavegacionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

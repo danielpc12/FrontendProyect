@@ -2,32 +2,36 @@
     <h1>Iniciar Sesión</h1>
 <div id="login-page" class="row">
     <div class="col s12 z-depth-6 card-panel">
-      <form [formGroup]="fgValidacion" class="login-form">
+      <form [formGroup]="fgValidacion" class="login-form" (ngSubmit)="ValidarIdentificacion()">
         <div class="row">
         </div>
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">mail_outline</i>
-            <input class="validate" id="email" type="email">
-            <label formControlName="correo" for="email" data-error="wrong" data-success="right">Correo Electrónico</label>
-            <div class="mensajeValidacion" *ngIf="(obtenerFGV.correo.errors && (obtenerFGV.correo.dirty || obtenerFGV.correo.touched))">
-              <strong>Este campo es requerido</strong>
+            <input formControlName="correo" type="email" id="email" class="validate"/>
+            <label class="active" for="email" >Correo Electrónico</label>
+            <div *ngIf="obtenerFGV.correo.errors && (obtenerFGV.correo.dirty || obtenerFGV.correo.touched)">
+              <strong *ngIf="obtenerFGV.correo.errors.requerid">Este campo es requerido</strong>
+              <strong *ngIf="obtenerFGV.correo.errors.email">Debe cuplir con un formato de correo</strong>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">lock_outline</i>
-            <input formControlName="clave" id="password" type="password">
-            <label for="password">Contraseña</label>
+            <input formControlName="clave" id="password" type="password"/>
+            <label class="active" for="password">Contraseña</label>
             <div class="mensajeValidacion" *ngIf="(obtenerFGV.clave.errors && (obtenerFGV.clave.dirty || obtenerFGV.clave.touched))">
-              <strong>Este campo es requerido</strong>
+              <strong *ngIf="obtenerFGV.clave.errors.requerid">Este campo es requerido</strong>
+              
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="input-field col s12">
-            <a href="#" class="btn waves-effect waves-light col s12">Ingresar</a>
+          <div class="row center-align">
+            <button [disabled]="obtenerFGV.clave.errors || obtenerFGV.correo.errors" class="btn waves-effect waves-light" type="submit" name="action">Identificar
+              <i class="material-icons right">send</i>
+            </button>
           </div>
         </div>
         <div class="row">

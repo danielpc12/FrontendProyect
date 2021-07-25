@@ -22,6 +22,11 @@ const routes: Routes = [
 
   {
     path: 'seguridad',
+    loadChildren: () => import('./modulos/usuario/usuario.module').then(m => m.UsuarioModule)
+  },
+
+  {
+    path: 'usuarios',
     loadChildren: () => import('./modulos/seguridad/seguridad.module').then(m => m.SeguridadModule)
   },
 

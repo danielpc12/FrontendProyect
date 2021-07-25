@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import * as crypto from 'crypto-js';
 import { UsuarioModelo } from 'src/app/modelos/usuario.modelo';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
-import { UsuarioModule } from '../../usuario/usuario.module';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -13,7 +12,7 @@ import { UsuarioModule } from '../../usuario/usuario.module';
 })
 export class IniciarSesionComponent implements OnInit {
 
-  fgValidador: FormGroup = this.fb.group({});
+  fgValidador: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder, 
     private servicioSeguridad: SeguridadService,
@@ -23,13 +22,13 @@ export class IniciarSesionComponent implements OnInit {
 
   ConstruirFormulario(){
     this.fgValidador = this.fb.group({
-      correo: ['', [Validators.required, Validators.email]],
-      clave: ['', Validators.required]
-    })
+      correo: ['ejemplo@correo.edu.co', [Validators.required, Validators.email]],
+      clave: ['********', [Validators.required, Validators.min(3)]]
+    });
   }
 
   ngOnInit(): void {
-    this.ConstruirFormulario
+    this.ConstruirFormulario();
   }
 
   get ObtenerFgvalidador() {
@@ -43,7 +42,6 @@ export class IniciarSesionComponent implements OnInit {
       let correo = this.ObtenerFgvalidador.correo.value;
       let clave = this.ObtenerFgvalidador.clave.value;
       let claveCifrada = crypto.MD5(clave).toString();
-
       let modelo = new UsuarioModelo();
       modelo.nombre_usuario = correo;
       modelo.clave = claveCifrada;
@@ -55,6 +53,7 @@ export class IniciarSesionComponent implements OnInit {
         },
         (error) => {
           alert("datos incorrectos")
+          console.log(error);
         }
       );
     }

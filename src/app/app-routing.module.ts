@@ -16,18 +16,23 @@ const routes: Routes = [
   },
 
   {
-    path: 'parametros',
+    path: 'parametrizacion',
     loadChildren: () => import('./modulos/parametrizacion/parametrizacion.module').then(m => m.ParametrizacionModule)
   },
 
   {
     path: 'seguridad',
-    loadChildren: () => import('./modulos/usuario/usuario.module').then(m => m.UsuarioModule)
+    loadChildren: () => import('./modulos/seguridad/seguridad.module').then(m => m.SeguridadModule)
   },
 
   {
     path: 'usuarios',
-    loadChildren: () => import('./modulos/seguridad/seguridad.module').then(m => m.SeguridadModule)
+    loadChildren: () => import('./modulos/usuario/usuario.module').then(m => m.UsuarioModule)
+  },
+
+  {
+    path: 'cliente',
+    loadChildren: () => import('./modulos/cliente/cliente.module').then(m => m.ClienteModule)
   },
 
   {

@@ -13,7 +13,7 @@ import { UsuarioModule } from '../../usuario/usuario.module';
 })
 export class IniciarSesionComponent implements OnInit {
 
-  fgValidacion: FormGroup = this.fb.group({});
+  fgValidador: FormGroup = this.fb.group({});
 
   constructor(private fb: FormBuilder, 
     private servicioSeguridad: SeguridadService,
@@ -22,7 +22,7 @@ export class IniciarSesionComponent implements OnInit {
  }
 
   ConstruirFormulario(){
-    this.fgValidacion = this.fb.group({
+    this.fgValidador = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       clave: ['', Validators.required]
     })
@@ -32,16 +32,16 @@ export class IniciarSesionComponent implements OnInit {
     this.ConstruirFormulario
   }
 
-  get obtenerFGV(){
-    return this.fgValidacion.controls;
+  get ObtenerFgvalidador() {
+    return this.fgValidador.controls;
   }
 
   ValidarIdentificacion(){
-    if(this.fgValidacion.invalid){
+    if(this.fgValidador.invalid){
       alert("formulario invalido")
     }else{
-      let correo = this.obtenerFGV.correo.value;
-      let clave = this.obtenerFGV.clave.value;
+      let correo = this.ObtenerFgvalidador.correo.value;
+      let clave = this.ObtenerFgvalidador.clave.value;
       let claveCifrada = crypto.MD5(clave).toString();
 
       let modelo = new UsuarioModelo();
